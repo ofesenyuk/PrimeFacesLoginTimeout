@@ -1,0 +1,14 @@
+com/leo/primeface2/dao/HibernateUtil.class
+com/leo/primeface2/web/beans/IdleMonitorView.class
+com/leo/primeface2/entities/TranslationMapPK.class
+com/leo/primeface2/dao/PersonDAO.class
+com/leo/primeface2/entities/TranslationMap.class
+com/leo/primeface2/web/beans/UserLoginView.class
+com/leo/primeface2/entities/TranslationMap_.class
+com/leo/primeface2/dao/greeting/GreetingFactory.class
+com/leo/primeface2/entities/Person.class
+com/leo/primeface2/encoder/Encoder.class
+com/leo/primeface2/dao/TranslationDAO.class
+com/leo/primeface2/entities/TranslationMapPK_.class
+com/leo/primeface2/dao/DAOFacade.class
+com/leo/primeface2/entities/Person_.class

@@ -1,0 +1,4 @@
+com/leo/primeface2/dao/TranslationDAOTest.class
+com/leo/primeface2/dao/DAOFacadeTest.class
+com/leo/primeface2/dao/PersonDAOTest.class
+com/leo/primeface2/dao/greeting/GreetingFactoryTest.class

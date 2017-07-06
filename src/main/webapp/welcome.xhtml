@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+
+            <style>
+             .center {
+              width: 200px; /* Ширина элемента в пикселах */
+              padding: 10px; /* Поля вокруг текста */
+              margin: auto; /* Выравниваем по центру */
+              /* background: #fc0; Цвет фона */
+             }
+            </style>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <p:graphicImage value="img/LEO.png" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    <div class="center"><p:graphicImage value="img/leo_tiger.png" /></div>
+                    <!--<p:inputText id="locationRequest" value="#{userLoginView.locationRequest}" label="locationRequest" />-->
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <!--Welcome to my site-->
+                    <h:form>
+                        <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
+                            <p:graphicImage name="img/login.png" />
+                        </h:outputLink>
+
+                        <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+                        <p:dialog header="Login" widgetVar="dlg" resizable="false">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="username" value="Username:" />
+                                <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
+
+                                <h:outputLabel for="password" value="Password:" />
+                                <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
+                                
+                                <h:outputLabel for="locationRequest" value="" />
+                                <p:inputText id="locationRequest" value="#{userLoginView.locationRequest}" label="locationRequest" style="display: none" />
+                                
+                                <f:facet name="footer">
+                                    <p:commandButton value="Login" update="growl" action="#{userLoginView.login}"
+                                                     oncomplete="handleLoginRequest(xhr, status, args)" ajax="true"/>
+                                </f:facet>  
+                            </h:panelGrid>
+                        </p:dialog>
+            <div id="country_holder"></div>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+    
+    <script type="text/javascript">
+        $(function(){
+            var language = "languag"; 
+            $.get('http://ipinfo.io',  function(data) {
+                var country = data.split('City,')[1].trim().split(' ')[0];
+                $("input[id*=locationRequest]")
+                        .attr("value", country ? country : "");
+                console.log("Country: " + (country ? country 
+                                           : "location is not determined"));
+            }, "text");
+        });
+    function handleLoginRequest(xhr, status, args) {
+//        $('#ui-layout-unit-content ui-widget-content').load('http://ipinfo.io');
+//        alert("navigator.language" + navigator.language);
+//        $.browserLanguage = function(callback){
+     
+//console.info($("input").text());
+//alert($("input").text());
+//     $.ajax({
+//         url: "//ajaxhttpheaders.appspot.com",
+//         dataType: 'jsonp',
+//         success: function(headers) {
+//             language = headers['Accept-Language'].substring(0,2);
+////             callback(languageLookup[language], headers['Accept-Language']);
+//             return language
+//         }
+//     });
+// }
+    
+        if(args.validationFailed || !args.loggedIn) {
+            PF('dlg').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('dlg').hide();
+            $('#loginLink').fadeOut();
+//            var res;
+//            alert(res);
+//            $('button').jq.load("http://ipinfo.io", function (response, status, xhr) {
+//                res = response;
+//                alert(res);
+//            })
+        }
+    }
+    </script>
+</html>
+
