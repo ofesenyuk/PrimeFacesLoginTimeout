@@ -71,13 +71,6 @@ public class UserLoginView implements Serializable {
             new DAOFacade<Person>().save(person);
         }
         try {
-            //        try {
-//            new DAOFacade<Person>().save(person);
-//        } catch (org.hibernate.exception.ConstraintViolationException ex) {
-////            if (!ex.getSQLException().getSQLState().contains("PK_")) {
-////                throw ex;
-////            }
-//        }
              person = new Person("ivan", Encoder.encrypt("secret"), "Ivan");        
         } catch (Exception ex) {
             Logger.getLogger(UserLoginView.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,13 +78,6 @@ public class UserLoginView implements Serializable {
         if (personDAO.getPersonsByUserName(person.getUsrName()).isEmpty()) {
             new DAOFacade<Person>().save(person);
         }
-//        try {
-//            new DAOFacade<Person>().save(person);
-//        } catch (org.hibernate.exception.ConstraintViolationException ex) {
-//            if (!ex.getSQLException().getSQLState().contains("PK_")) {
-//                throw ex;
-//            }
-//        }
         TranslationDAO translationDAO = new TranslationDAO();
         TranslationMap translationMap 
                 = new TranslationMap(new TranslationMapPK(person
@@ -107,22 +93,6 @@ public class UserLoginView implements Serializable {
                 translationMap.getTranslationMapPK().getLocale()).isEmpty()) {
             new DAOFacade<TranslationMap>().save(translationMap);
         }
-//        try {
-//            new DAOFacade<TranslationMap>().save(new TranslationMap(new TranslationMapPK(person
-//                    .getActualName(), "RUS"), "Иван"));
-//        } catch (org.hibernate.exception.ConstraintViolationException ex) {
-//            if (!ex.getSQLException().getSQLState().contains("PK_")) {
-//                throw ex;
-//            }
-//        }
-//        try {
-//            new DAOFacade<TranslationMap>().save(new TranslationMap(new TranslationMapPK(person
-//                    .getActualName(), "UKR"), "Iван"));
-//        } catch (org.hibernate.exception.ConstraintViolationException ex) {
-//            if (!ex.getSQLException().getSQLState().contains("PK_")) {
-//                throw ex;
-//            }
-//        }
 
         localeNotations.put("UKR", new Locale("uk", "UA"));
         localeNotations.put("RUS", new Locale("ru", "RU"));
